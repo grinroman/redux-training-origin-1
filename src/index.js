@@ -15,12 +15,7 @@ const { dispatch, subscribe, getState } = store;
 //         dispatch(creator(...args));
 //     };
 
-const { inc, dec, rnd } = bindActionCreators(
-    {
-        actions,
-    },
-    dispatch
-);
+const { inc, dec, rnd } = bindActionCreators(actions,dispatch);
 
 const update = () => {
     document.getElementById('counter').textContent = getState().value;
