@@ -8,15 +8,15 @@ import reducer from './reducer';
 const store = createStore(reducer);
 const { dispatch, subscribe, getState } = store;
 
-const bindActionCreator =
-    (creator, dispatch) =>
-    (...args) => {
-        dispatch(creator(...args));
-    };
+// const bindActionCreator =
+//     (creator, dispatch) =>
+//     (...args) => {
+//         dispatch(creator(...args));
+//     };
 
-const incDispatch = bindActionCreator(inc, dispatch);
-const decDispatch = bindActionCreator(dec, dispatch);
-const rndDispatch = bindActionCreator(rnd, dispatch);
+const incDispatch = bindActionCreators(inc, dispatch);
+const decDispatch = bindActionCreators(dec, dispatch);
+const rndDispatch = bindActionCreators(rnd, dispatch);
 
 const update = () => {
     document.getElementById('counter').textContent = getState().value;
