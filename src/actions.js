@@ -6,7 +6,7 @@ export const dec = () => ({
     type: 'DEC',
 });
 
-export const rnd = (value) => ({
+export const rnd = () => ({
     type: 'RND',
-    payload: value,
+    payload: Math.floor(Math.random() * 10), // on the level of react-redux actions can be not pure
 });

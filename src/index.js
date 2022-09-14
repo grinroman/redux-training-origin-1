@@ -1,44 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { bindActionCreators, createStore } from 'redux';
-// import { dec, inc, rnd } from './actions';!!!
-import * as actions from './actions';
+import { createStore } from 'redux';
 import reducer from './reducer';
-// import App from './App';
-
-const store = createStore(reducer);
-const { dispatch, subscribe, getState } = store;
-
-// const bindActionCreator =
-//     (creator, dispatch) =>
-//     (...args) => {
-//         dispatch(creator(...args));
-//     };
-
-const { inc, dec, rnd } = bindActionCreators(
-    {
-        actions,
-    },
-    dispatch
-);
-
-const update = () => {
-    document.getElementById('counter').textContent = getState().value;
-};
-subscribe(update);
-
-document.getElementById('inc').addEventListener('click', inc);
-
-document.getElementById('dec').addEventListener('click', dec);
-
-document.getElementById('rnd').addEventListener('click', () => {
-    const value = Math.floor(Math.random() * 10);
-    rnd(value);
-});
+import App from './components/App';
+import { Provider } from 'react-redux';
+// import { dec, inc, rnd } from './actions';!!!
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+const store = createStore(reducer);
+
 root.render(
     <React.StrictMode>
-        <></>
+        <Provider store={store}>
+            <App />
+        </Provider>
     </React.StrictMode>
 );
+// update();  // провайдер уже обеспечивает изменение нашего VirtualDOM
+//subscribe(update); ///и обеспечивает изменение стейта в случае вызова dispatch
